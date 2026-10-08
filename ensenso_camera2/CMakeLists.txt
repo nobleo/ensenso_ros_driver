@@ -43,7 +43,8 @@ find_package(visualization_msgs REQUIRED)
 # Find the Ensenso SDK.
 if(NOT $ENV{ENSENSO_INSTALL} STREQUAL "")
   if(UNIX)
-    set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "$ENV{ENSENSO_INSTALL}/cmake/")
+    # Prepend (not append) so this takes priority over PCL's bundled, arch-agnostic FindEnsenso.cmake.
+    set(CMAKE_MODULE_PATH "$ENV{ENSENSO_INSTALL}/cmake/" ${CMAKE_MODULE_PATH})
     find_package(Ensenso REQUIRED)
   elseif(WIN32)
     set(ENSENSO_INCLUDE_DIRS $ENV{ENSENSO_INSTALL}/development/c/include)
