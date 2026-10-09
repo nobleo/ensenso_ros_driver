@@ -14,6 +14,7 @@ esac
 wget -O /tmp/ensenso.deb "https://download.ensenso.com/s/ensensosdk/download?files=ensenso-sdk-${ENSENSO_SDK_VERSION}-${ensenso_arch}.deb"
 sudo dpkg -i /tmp/ensenso.deb
 sudo apt-get install -f -y
+rm -f /tmp/ensenso.deb
 
 if [[ $ROS_VERSION -eq "2" ]]; then
     sudo apt-get -y install libpcl-dev libopencv-dev python3-opencv
